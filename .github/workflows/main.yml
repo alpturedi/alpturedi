@@ -22,19 +22,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Snk
-      - name: generate-snake-game-from-github-contribution-grid
-        id: snake-gif
+      - name: generate github-contribution-grid-snake.svg
         uses: Platane/snk@master
         with:
-          github_user_name: alpturedi
-          gif_out_path: dist/github-contribution-grid-snake.gif
+          github_user_name: ${{ github.repository_owner }}
           svg_out_path: dist/github-contribution-grid-snake.svg
-
-      - name: ensure the generated file exists
-        run: |
-          ls -l ${{ steps.snake-gif.outputs.gif_out_path }}
-          test -f ${{ steps.snake-gif.outputs.gif_out_path }}
